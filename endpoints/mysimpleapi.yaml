@@ -1,0 +1,40 @@
+swagger: '2.0' 
+info:
+  title: My Simple API
+  description: Sample API on Cloud Endpoints with a Cloud Run backend
+  version: 1.0.0 
+host: mysimpleapi.endpoints.adhish-sandbox.cloud.goog
+x-google-endpoints:
+- name: mysimpleapi.endpoints.adhish-sandbox.cloud.goog
+  target: "34.151.67.239"
+schemes:
+  - https
+produces:
+  - application/json
+
+paths:
+  /python:
+    get:
+      summary: Python hello world
+      operationId: pythonhello
+      x-google-backend:
+        address: http://python-bot.default.svc.cluster.local
+        disable_auth: true
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  
+  /node:
+    get:
+      summary: Node hello world
+      operationId: nodehello
+      x-google-backend:
+        address: http://node-bot.default.svc.cluster.local
+        disable_auth: true
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
